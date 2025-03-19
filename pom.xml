@@ -9,12 +9,23 @@
 
     <groupId>org.kerneloso</groupId>
     <artifactId>CalculatorPracticeSwing</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-DEVELOPMENT</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--Dependencies Versions-->
+        <junit.version>5.11.2</junit.version>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
