@@ -12,16 +12,16 @@ public class CalculatorView extends JFrame {
 
   public CalculatorView() {
 
+    initComponents();
+
     setResizable(false);
     setTitle("Calculator Swing");
-    int width = 280;
-    int height = 450;
+    int width = this.getWidth();
+    int height = this.getHeight();
     setSize(width, height);
     Toolkit localScreen = Toolkit.getDefaultToolkit();
     Dimension screenDimension = localScreen.getScreenSize();
     setLocation((screenDimension.width / 2 - width / 2), (screenDimension.height / 2 - height / 2));
-
-    initComponents();
 
   }
 
