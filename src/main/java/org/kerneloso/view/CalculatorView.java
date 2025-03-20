@@ -1,6 +1,7 @@
 
 package org.kerneloso.view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -21,34 +22,33 @@ public class CalculatorView extends JFrame {
 
   }
 
-  private void flashSpecialPanels(java.awt.event.MouseEvent evt) {
+  private void changePanelColor(java.awt.event.MouseEvent evt , Color color) {
     JPanel panel = (JPanel) evt.getSource();
-    panel.setBackground(Colors.SPECIAL_FLASH);
+    panel.setBackground(color);
+  }
+
+  private void flashSpecialPanels(java.awt.event.MouseEvent evt) {
+    changePanelColor(evt , Colors.SPECIAL_FLASH);
   }
 
   private void highlightSpecialPanels(java.awt.event.MouseEvent evt) {
-    JPanel panel = (JPanel) evt.getSource();
-    panel.setBackground(Colors.SPECIAL_LIGHT);
+    changePanelColor(evt , Colors.SPECIAL_LIGHT);
   }
 
   private void restoreSpecialPanelsColor(java.awt.event.MouseEvent evt) {
-    JPanel panel = (JPanel) evt.getSource();
-    panel.setBackground(Colors.SPECIAL_DARK);
+    changePanelColor(evt , Colors.SPECIAL_DARK);
   }
 
   private void flashPanels(java.awt.event.MouseEvent evt) {
-    JPanel panel = (JPanel) evt.getSource();
-    panel.setBackground(Colors.FOREGROUND_FLASH);
+    changePanelColor(evt , Colors.FOREGROUND_FLASH);
   }
 
   private void highlightPanels(java.awt.event.MouseEvent evt) {
-    JPanel panel = (JPanel) evt.getSource();
-    panel.setBackground(Colors.FOREGROUND_LIGHT);
+    changePanelColor(evt , Colors.FOREGROUND_LIGHT);
   }
 
   private void restorePanelsColor(java.awt.event.MouseEvent evt) {
-    JPanel panel = (JPanel) evt.getSource();
-    panel.setBackground(Colors.FOREGROUND_DARK);
+    changePanelColor(evt , Colors.FOREGROUND_DARK);
   }
 
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
