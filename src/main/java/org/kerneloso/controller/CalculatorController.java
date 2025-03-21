@@ -8,8 +8,8 @@ import org.kerneloso.view.Colors;
 
 public class CalculatorController {
 
-  private CalculatorView view;
-  private CalculatorModel model;
+  private final CalculatorView view;
+  private final CalculatorModel model;
 
   public CalculatorController() {
 
@@ -17,43 +17,36 @@ public class CalculatorController {
     view.setVisible(true);
 
     this.model = new CalculatorModel();
+    refreshView();
 
   }
 
   //Input Events
-
   public void resetPressed() {
 
-    updateOperator("");
-    updateOperand("");
-
-    updateScreen("0");
+    model.resetModel();
+    refreshView();
 
   }
 
-  public void resultPressed() {
+  public void digitPressed(java.awt.event.MouseEvent evt) {
 
-    if (!model.getOperand().isEmpty()) {
+    resetModelWhenResolved();
 
-      updateScreen(model.operate(view.getScreen().getText()));
+    String current = model.getOperandScreen();
+    String input = getLabelText(evt);
+    String updated =
+        (current.equals("0"))
+            ? (input.equals("."))
+              ? current + input
+              : input
+            : (current.contains(".") && input.equals("."))
+                ? current
+                : current + input;
 
-    }
+    model.setOperandScreen(updated);
 
-    if (model.isResolved()) {
-      updateOperator("");
-      updateOperand("");
-    }
-
-  }
-
-  public void erasePressed() {
-
-    String text = view.getScreen().getText();
-    text = (text.length() == 1)
-        ? text = "0"
-        : text.substring(0, text.length() - 1);
-
-    updateScreen(text);
+    refreshView();
 
   }
 
@@ -61,52 +54,54 @@ public class CalculatorController {
 
     String input = getLabelText(evt);
 
-    updateOperator(input);
-    updateOperand(view.getScreen().getText());
+    model.setOperator(input);
+    refreshView();
 
-    updateScreen("0");
   }
 
-  private void updateOperand(String operand) {
+  public void erasePressed() {
 
-    model.setOperand(operand);
-    view.setOperandText(operand);
+    resetModelWhenResolved();
+
+    String current = model.getOperandScreen();
+    String updated =
+        (current.length() == 1)
+            ? "0"
+            : current.substring(0, current.length() - 1);
+
+    model.setOperandScreen(updated);
+    refreshView();
+
   }
 
-  private void updateOperator(String operator) {
-    model.setOperator(operator);
-    view.setOperatorText(operator);
-  }
+  public void resultPressed() {
 
-  public void numberPressed(java.awt.event.MouseEvent evt) {
+    if (!model.getOperandCache().isEmpty()) {
 
-    if (model.isResolved()) {
-      updateScreen("0");
-      model.setResolved(false);
+      model.operate();
+
     }
 
-    String input = getLabelText(evt);
-
-    String current = view.getScreen().getText();
-
-    String updated = (current.length() < 12)
-        ? (current.equals("0"))
-        ? input : current + input
-        : current;
-
-    updateScreen(updated);
+    refreshView();
 
   }
 
-  private void updateScreen(String input) {
+  //Model-View Logic
+  private void refreshView() {
 
-    input = (input.length() > 12)
-        ? input.substring(0, 11)
-        : input;
+    view.setOperandText(model.getOperandCache());
+    view.setOperatorText(model.getOperator());
+    view.getFullAdvice().setEnabled(model.isScreenFull());
+    view.setScreenText(model.getOperandScreen());
 
-    view.getFullAdvice().setEnabled(input.length() >= 12);
+  }
 
-    view.setScreenText(input);
+  private void resetModelWhenResolved() {
+
+    if (model.isResolved()) {
+      model.resetModel();
+    }
+
   }
 
   private String getLabelText(java.awt.event.MouseEvent evt) {

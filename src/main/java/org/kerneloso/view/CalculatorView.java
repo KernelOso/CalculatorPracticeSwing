@@ -2,6 +2,7 @@
 package org.kerneloso.view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -9,7 +10,7 @@ import org.kerneloso.controller.CalculatorController;
 
 public class CalculatorView extends JFrame {
 
-  private CalculatorController controller;
+  private final CalculatorController controller;
 
   public CalculatorView(CalculatorController controller) {
 
@@ -26,7 +27,6 @@ public class CalculatorView extends JFrame {
 
   }
 
-  //GETTERS
   public JLabel getScreen() {
     return jLabelScreen;
   }
@@ -35,7 +35,6 @@ public class CalculatorView extends JFrame {
     return jLabelFullAdvice;
   }
 
-  //SETTERS
   public void setScreenText(String input) {
     this.jLabelScreen.setText(input);
   }
@@ -102,24 +101,24 @@ public class CalculatorView extends JFrame {
 
     jPanelScreen.setBackground(new java.awt.Color(196, 202, 208));
 
-    jLabelScreen.setFont(new java.awt.Font("Monospaced", 0, 48)); // NOI18N
+    jLabelScreen.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelScreen.setForeground(new java.awt.Color(0, 0, 0));
     jLabelScreen.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     jLabelScreen.setText("0");
 
-    jLabelFullAdvice.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+    jLabelFullAdvice.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 18)); // NOI18N
     jLabelFullAdvice.setForeground(new java.awt.Color(0, 0, 0));
     jLabelFullAdvice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelFullAdvice.setText("E");
     jLabelFullAdvice.setEnabled(false);
 
-    jLabelOperator.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+    jLabelOperator.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 18)); // NOI18N
     jLabelOperator.setForeground(new java.awt.Color(0, 0, 0));
     jLabelOperator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelOperator.setText("");
     jLabelOperator.setEnabled(true);
 
-    jLabelOperand.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+    jLabelOperand.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 18)); // NOI18N
     jLabelOperand.setForeground(new java.awt.Color(0, 0, 0));
     jLabelOperand.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     jLabelOperand.setText("");
@@ -163,7 +162,7 @@ public class CalculatorView extends JFrame {
     jPanelResultButton.setBackground(new java.awt.Color(101, 85, 96));
     jPanelResultButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-    jLabelResultButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelResultButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelResultButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelResultButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelResultButton.setText("=");
@@ -207,7 +206,7 @@ public class CalculatorView extends JFrame {
     jPanelCButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelCButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelCButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelCButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelCButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelCButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelCButton.setText("C");
@@ -248,7 +247,7 @@ public class CalculatorView extends JFrame {
     jPanelDivisionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelDivisionButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelDivisionButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelDivisionButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelDivisionButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelDivisionButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelDivisionButton.setText("/");
@@ -292,7 +291,7 @@ public class CalculatorView extends JFrame {
     jPanelMultiplicationButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelMultiplicationButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelMultiplicationButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelMultiplicationButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelMultiplicationButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelMultiplicationButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelMultiplicationButton.setText("*");
@@ -337,7 +336,7 @@ public class CalculatorView extends JFrame {
     jPanelEraseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelEraseButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelEraseButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelEraseButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelEraseButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelEraseButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelEraseButton.setText("<-");
@@ -380,7 +379,7 @@ public class CalculatorView extends JFrame {
     jPanelMinusButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelMinusButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelMinusButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelMinusButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelMinusButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelMinusButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelMinusButton.setText("-");
@@ -423,7 +422,7 @@ public class CalculatorView extends JFrame {
     jPanelPlusButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelPlusButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelPlusButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelPlusButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelPlusButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelPlusButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelPlusButton.setText("+");
@@ -465,13 +464,13 @@ public class CalculatorView extends JFrame {
     jPanelDotButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelDotButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelDotButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelDotButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelDotButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelDotButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelDotButton.setText(".");
     jLabelDotButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -507,13 +506,13 @@ public class CalculatorView extends JFrame {
     jPanelPercentageButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabelPercentageButton.setBackground(new java.awt.Color(0, 0, 0));
-    jLabelPercentageButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabelPercentageButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelPercentageButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelPercentageButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelPercentageButton.setText("%");
     jLabelPercentageButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        //TODO percentage logic
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -550,13 +549,13 @@ public class CalculatorView extends JFrame {
     jPanel9Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel9Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel9Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel9Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel9Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel9Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel9Button.setText("9");
     jLabel9Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -591,13 +590,13 @@ public class CalculatorView extends JFrame {
     jPanel8Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel8Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel8Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel8Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel8Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel8Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel8Button.setText("8");
     jLabel8Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -632,13 +631,13 @@ public class CalculatorView extends JFrame {
     jPanel7Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel7Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel7Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel7Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel7Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel7Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel7Button.setText("7");
     jLabel7Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -673,13 +672,13 @@ public class CalculatorView extends JFrame {
     jPanel6Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel6Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel6Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel6Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel6Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel6Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel6Button.setText("6");
     jLabel6Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -714,13 +713,13 @@ public class CalculatorView extends JFrame {
     jPanel5Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel5Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel5Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel5Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel5Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel5Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel5Button.setText("5");
     jLabel5Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -755,13 +754,13 @@ public class CalculatorView extends JFrame {
     jPanel4Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel4Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel4Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel4Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel4Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel4Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel4Button.setText("4");
     jLabel4Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -796,13 +795,13 @@ public class CalculatorView extends JFrame {
     jPanel3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel3Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel3Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel3Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel3Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel3Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel3Button.setText("3");
     jLabel3Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -836,13 +835,13 @@ public class CalculatorView extends JFrame {
     jPanel2Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-    jLabel2Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel2Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel2Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel2Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel2Button.setText("2");
     jLabel2Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -877,13 +876,13 @@ public class CalculatorView extends JFrame {
     jPanel1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel1Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel1Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel1Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel1Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel1Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel1Button.setText("1");
     jLabel1Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -918,13 +917,13 @@ public class CalculatorView extends JFrame {
     jPanel0Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
     jLabel0Button.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel0Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel0Button.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabel0Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel0Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel0Button.setText("0");
     jLabel0Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        controller.numberPressed(evt);
+        controller.digitPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
