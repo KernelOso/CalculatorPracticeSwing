@@ -1,15 +1,19 @@
 
 package org.kerneloso.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
+import org.kerneloso.controller.CalculatorController;
 
 public class CalculatorView extends JFrame {
 
-  public CalculatorView() {
+  private CalculatorController controller;
+
+  public CalculatorView(CalculatorController controller) {
+
+    this.controller = controller;
 
     initComponents();
 
@@ -22,33 +26,18 @@ public class CalculatorView extends JFrame {
 
   }
 
-  private void changePanelColor(java.awt.event.MouseEvent evt , Color color) {
-    JPanel panel = (JPanel) evt.getSource();
-    panel.setBackground(color);
+  //GETTERS
+  public JLabel getScreen() {
+    return jLabelScreen;
   }
 
-  private void flashSpecialPanels(java.awt.event.MouseEvent evt) {
-    changePanelColor(evt , Colors.SPECIAL_FLASH);
+  public JLabel getFullAdvice() {
+    return jLabelFullAdvice;
   }
 
-  private void highlightSpecialPanels(java.awt.event.MouseEvent evt) {
-    changePanelColor(evt , Colors.SPECIAL_LIGHT);
-  }
-
-  private void restoreSpecialPanelsColor(java.awt.event.MouseEvent evt) {
-    changePanelColor(evt , Colors.SPECIAL_DARK);
-  }
-
-  private void flashPanels(java.awt.event.MouseEvent evt) {
-    changePanelColor(evt , Colors.FOREGROUND_FLASH);
-  }
-
-  private void highlightPanels(java.awt.event.MouseEvent evt) {
-    changePanelColor(evt , Colors.FOREGROUND_LIGHT);
-  }
-
-  private void restorePanelsColor(java.awt.event.MouseEvent evt) {
-    changePanelColor(evt , Colors.FOREGROUND_DARK);
+  //SETTERS
+  public void setScreenText(String screenText) {
+    this.jLabelScreen.setText(screenText);
   }
 
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -57,6 +46,7 @@ public class CalculatorView extends JFrame {
     jPanelMain = new javax.swing.JPanel();
     jPanelScreen = new javax.swing.JPanel();
     jLabelScreen = new javax.swing.JLabel();
+    jLabelFullAdvice = new javax.swing.JLabel();
     jPanelResultButton = new javax.swing.JPanel();
     jLabelResultButton = new javax.swing.JLabel();
     jPanelCButton = new javax.swing.JPanel();
@@ -107,20 +97,35 @@ public class CalculatorView extends JFrame {
     jLabelScreen.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     jLabelScreen.setText("0");
 
+    jLabelFullAdvice.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+    jLabelFullAdvice.setForeground(new java.awt.Color(0, 0, 0));
+    jLabelFullAdvice.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabelFullAdvice.setText("E");
+    jLabelFullAdvice.setEnabled(false);
+
     javax.swing.GroupLayout jPanelScreenLayout = new javax.swing.GroupLayout(jPanelScreen);
     jPanelScreen.setLayout(jPanelScreenLayout);
     jPanelScreenLayout.setHorizontalGroup(
         jPanelScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                jPanelScreenLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelScreen, javax.swing.GroupLayout.DEFAULT_SIZE,
+                        javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
             .addGroup(jPanelScreenLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelScreen, javax.swing.GroupLayout.DEFAULT_SIZE,
-                    javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jLabelFullAdvice, javax.swing.GroupLayout.PREFERRED_SIZE, 23,
+                    javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
     );
     jPanelScreenLayout.setVerticalGroup(
         jPanelScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelScreen, javax.swing.GroupLayout.Alignment.TRAILING,
-                javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                jPanelScreenLayout.createSequentialGroup()
+                    .addComponent(jLabelFullAdvice, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
+                        Short.MAX_VALUE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabelScreen))
     );
 
     jPanelResultButton.setBackground(new java.awt.Color(101, 85, 96));
@@ -504,6 +509,11 @@ public class CalculatorView extends JFrame {
     jLabel9Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel9Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel9Button.setText("9");
+    jLabel9Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel9ButtonLayout = new javax.swing.GroupLayout(jPanel9Button);
     jPanel9Button.setLayout(jPanel9ButtonLayout);
@@ -541,6 +551,11 @@ public class CalculatorView extends JFrame {
     jLabel8Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel8Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel8Button.setText("8");
+    jLabel8Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel8ButtonLayout = new javax.swing.GroupLayout(jPanel8Button);
     jPanel8Button.setLayout(jPanel8ButtonLayout);
@@ -578,6 +593,11 @@ public class CalculatorView extends JFrame {
     jLabel7Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel7Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel7Button.setText("7");
+    jLabel7Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel7ButtonLayout = new javax.swing.GroupLayout(jPanel7Button);
     jPanel7Button.setLayout(jPanel7ButtonLayout);
@@ -615,6 +635,11 @@ public class CalculatorView extends JFrame {
     jLabel6Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel6Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel6Button.setText("6");
+    jLabel6Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel6ButtonLayout = new javax.swing.GroupLayout(jPanel6Button);
     jPanel6Button.setLayout(jPanel6ButtonLayout);
@@ -652,6 +677,11 @@ public class CalculatorView extends JFrame {
     jLabel5Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel5Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel5Button.setText("5");
+    jLabel5Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel5ButtonLayout = new javax.swing.GroupLayout(jPanel5Button);
     jPanel5Button.setLayout(jPanel5ButtonLayout);
@@ -689,6 +719,11 @@ public class CalculatorView extends JFrame {
     jLabel4Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel4Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel4Button.setText("4");
+    jLabel4Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel4ButtonLayout = new javax.swing.GroupLayout(jPanel4Button);
     jPanel4Button.setLayout(jPanel4ButtonLayout);
@@ -726,6 +761,11 @@ public class CalculatorView extends JFrame {
     jLabel3Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel3Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel3Button.setText("3");
+    jLabel3Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel3ButtonLayout = new javax.swing.GroupLayout(jPanel3Button);
     jPanel3Button.setLayout(jPanel3ButtonLayout);
@@ -763,6 +803,11 @@ public class CalculatorView extends JFrame {
     jLabel2Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel2Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel2Button.setText("2");
+    jLabel2Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel2ButtonLayout = new javax.swing.GroupLayout(jPanel2Button);
     jPanel2Button.setLayout(jPanel2ButtonLayout);
@@ -800,6 +845,11 @@ public class CalculatorView extends JFrame {
     jLabel1Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel1Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel1Button.setText("1");
+    jLabel1Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel1ButtonLayout = new javax.swing.GroupLayout(jPanel1Button);
     jPanel1Button.setLayout(jPanel1ButtonLayout);
@@ -837,6 +887,11 @@ public class CalculatorView extends JFrame {
     jLabel9Button9.setForeground(new java.awt.Color(0, 0, 0));
     jLabel9Button9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel9Button9.setText("0");
+    jLabel9Button9.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        numberPressed(evt);
+      }
+    });
 
     javax.swing.GroupLayout jPanel0ButtonLayout = new javax.swing.GroupLayout(jPanel0Button);
     jPanel0Button.setLayout(jPanel0ButtonLayout);
@@ -1063,6 +1118,37 @@ public class CalculatorView extends JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
+  //Number Event
+  private void numberPressed(java.awt.event.MouseEvent evt) {
+    JLabel label = (JLabel) evt.getSource();
+    controller.numberPressed(label.getText());
+  }
+
+  //Color Events
+  private void flashSpecialPanels(java.awt.event.MouseEvent evt) {
+    controller.changePanelColor(evt, Colors.SPECIAL_FLASH);
+  }
+
+  private void highlightSpecialPanels(java.awt.event.MouseEvent evt) {
+    controller.changePanelColor(evt, Colors.SPECIAL_LIGHT);
+  }
+
+  private void restoreSpecialPanelsColor(java.awt.event.MouseEvent evt) {
+    controller.changePanelColor(evt, Colors.SPECIAL_DARK);
+  }
+
+  private void flashPanels(java.awt.event.MouseEvent evt) {
+    controller.changePanelColor(evt, Colors.FOREGROUND_FLASH);
+  }
+
+  private void highlightPanels(java.awt.event.MouseEvent evt) {
+    controller.changePanelColor(evt, Colors.FOREGROUND_LIGHT);
+  }
+
+  private void restorePanelsColor(java.awt.event.MouseEvent evt) {
+    controller.changePanelColor(evt, Colors.FOREGROUND_DARK);
+  }
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JLabel jLabel1Button;
   private javax.swing.JLabel jLabel2Button;
@@ -1078,6 +1164,7 @@ public class CalculatorView extends JFrame {
   private javax.swing.JLabel jLabelDivisionButton;
   private javax.swing.JLabel jLabelDotButton;
   private javax.swing.JLabel jLabelEraseButton;
+  private javax.swing.JLabel jLabelFullAdvice;
   private javax.swing.JLabel jLabelMinusButton;
   private javax.swing.JLabel jLabelMultiplicationButton;
   private javax.swing.JLabel jLabelPercentageButton;
