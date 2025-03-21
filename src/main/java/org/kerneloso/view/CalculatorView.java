@@ -36,8 +36,16 @@ public class CalculatorView extends JFrame {
   }
 
   //SETTERS
-  public void setScreenText(String screenText) {
-    this.jLabelScreen.setText(screenText);
+  public void setScreenText(String input) {
+    this.jLabelScreen.setText(input);
+  }
+
+  public void setOperatorText(String input) {
+    this.jLabelOperator.setText(input);
+  }
+
+  public void setOperandText(String input) {
+    this.jLabelOperand.setText(input);
   }
 
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -48,7 +56,7 @@ public class CalculatorView extends JFrame {
     jLabelScreen = new javax.swing.JLabel();
     jLabelFullAdvice = new javax.swing.JLabel();
     jLabelOperator = new javax.swing.JLabel();
-    jLabelCache = new javax.swing.JLabel();
+    jLabelOperand = new javax.swing.JLabel();
     jPanelResultButton = new javax.swing.JPanel();
     jLabelResultButton = new javax.swing.JLabel();
     jPanelCButton = new javax.swing.JPanel();
@@ -108,14 +116,14 @@ public class CalculatorView extends JFrame {
     jLabelOperator.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
     jLabelOperator.setForeground(new java.awt.Color(0, 0, 0));
     jLabelOperator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabelOperator.setText("Null");
-    jLabelOperator.setEnabled(false);
+    jLabelOperator.setText("");
+    jLabelOperator.setEnabled(true);
 
-    jLabelCache.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
-    jLabelCache.setForeground(new java.awt.Color(0, 0, 0));
-    jLabelCache.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    jLabelCache.setText("Cache");
-    jLabelCache.setEnabled(false);
+    jLabelOperand.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+    jLabelOperand.setForeground(new java.awt.Color(0, 0, 0));
+    jLabelOperand.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabelOperand.setText("");
+    jLabelOperand.setEnabled(true);
 
     javax.swing.GroupLayout jPanelScreenLayout = new javax.swing.GroupLayout(jPanelScreen);
     jPanelScreen.setLayout(jPanelScreenLayout);
@@ -131,7 +139,7 @@ public class CalculatorView extends JFrame {
                 .addComponent(jLabelFullAdvice, javax.swing.GroupLayout.PREFERRED_SIZE, 23,
                     javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabelCache, javax.swing.GroupLayout.DEFAULT_SIZE,
+                .addComponent(jLabelOperand, javax.swing.GroupLayout.DEFAULT_SIZE,
                     javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelOperator))
@@ -146,7 +154,7 @@ public class CalculatorView extends JFrame {
                             Short.MAX_VALUE)
                         .addComponent(jLabelOperator, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
                             Short.MAX_VALUE)
-                        .addComponent(jLabelCache, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
+                        .addComponent(jLabelOperand, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
                             Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabelScreen))
@@ -161,7 +169,7 @@ public class CalculatorView extends JFrame {
     jLabelResultButton.setText("=");
     jLabelResultButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.resultPressed();
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -246,7 +254,7 @@ public class CalculatorView extends JFrame {
     jLabelDivisionButton.setText("/");
     jLabelDivisionButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.operatorPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -290,7 +298,7 @@ public class CalculatorView extends JFrame {
     jLabelMultiplicationButton.setText("*");
     jLabelMultiplicationButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.operatorPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -378,7 +386,7 @@ public class CalculatorView extends JFrame {
     jLabelMinusButton.setText("-");
     jLabelMinusButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.operatorPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -421,7 +429,7 @@ public class CalculatorView extends JFrame {
     jLabelPlusButton.setText("+");
     jLabelPlusButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.operatorPressed(evt);
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -1173,7 +1181,7 @@ public class CalculatorView extends JFrame {
   private javax.swing.JLabel jLabel8Button;
   private javax.swing.JLabel jLabel9Button;
   private javax.swing.JLabel jLabelCButton;
-  private javax.swing.JLabel jLabelCache;
+  private javax.swing.JLabel jLabelOperand;
   private javax.swing.JLabel jLabelDivisionButton;
   private javax.swing.JLabel jLabelDotButton;
   private javax.swing.JLabel jLabelEraseButton;
