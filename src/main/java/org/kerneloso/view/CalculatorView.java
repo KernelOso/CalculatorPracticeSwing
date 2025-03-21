@@ -205,7 +205,7 @@ public class CalculatorView extends JFrame {
     jLabelCButton.setText("C");
     jLabelCButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.resetPressed();
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -335,7 +335,7 @@ public class CalculatorView extends JFrame {
     jLabelEraseButton.setText("<-");
     jLabelEraseButton.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-
+        controller.erasePressed();
       }
 
       public void mouseEntered(java.awt.event.MouseEvent evt) {

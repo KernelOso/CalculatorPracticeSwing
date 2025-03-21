@@ -18,6 +18,26 @@ public class CalculatorController {
   }
 
   //Input Events
+
+  public void resetPressed() {
+
+    //TODO eliminar lo que habia en el cache y el operador del modelo
+    updateScreen("0");
+
+  }
+
+  public void erasePressed() {
+
+    //1. eliminar el ultimo elemento de la pantalla
+    String text = view.getScreen().getText();
+    text = (text.length() == 1)
+        ? text = "0"
+        : text.substring(0 , text.length() -1);
+
+    updateScreen(text);
+
+  }
+
   public void numberPressed(java.awt.event.MouseEvent evt) {
 
     JLabel label = (JLabel) evt.getSource();
