@@ -47,6 +47,8 @@ public class CalculatorView extends JFrame {
     jPanelScreen = new javax.swing.JPanel();
     jLabelScreen = new javax.swing.JLabel();
     jLabelFullAdvice = new javax.swing.JLabel();
+    jLabelOperator = new javax.swing.JLabel();
+    jLabelCache = new javax.swing.JLabel();
     jPanelResultButton = new javax.swing.JPanel();
     jLabelResultButton = new javax.swing.JLabel();
     jPanelCButton = new javax.swing.JPanel();
@@ -84,7 +86,7 @@ public class CalculatorView extends JFrame {
     jPanel1Button = new javax.swing.JPanel();
     jLabel1Button = new javax.swing.JLabel();
     jPanel0Button = new javax.swing.JPanel();
-    jLabel9Button9 = new javax.swing.JLabel();
+    jLabel0Button = new javax.swing.JLabel();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,6 +105,18 @@ public class CalculatorView extends JFrame {
     jLabelFullAdvice.setText("E");
     jLabelFullAdvice.setEnabled(false);
 
+    jLabelOperator.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+    jLabelOperator.setForeground(new java.awt.Color(0, 0, 0));
+    jLabelOperator.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabelOperator.setText("Null");
+    jLabelOperator.setEnabled(false);
+
+    jLabelCache.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+    jLabelCache.setForeground(new java.awt.Color(0, 0, 0));
+    jLabelCache.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+    jLabelCache.setText("Cache");
+    jLabelCache.setEnabled(false);
+
     javax.swing.GroupLayout jPanelScreenLayout = new javax.swing.GroupLayout(jPanelScreen);
     jPanelScreen.setLayout(jPanelScreenLayout);
     jPanelScreenLayout.setHorizontalGroup(
@@ -116,42 +130,56 @@ public class CalculatorView extends JFrame {
             .addGroup(jPanelScreenLayout.createSequentialGroup()
                 .addComponent(jLabelFullAdvice, javax.swing.GroupLayout.PREFERRED_SIZE, 23,
                     javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCache, javax.swing.GroupLayout.DEFAULT_SIZE,
+                    javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelOperator))
     );
     jPanelScreenLayout.setVerticalGroup(
         jPanelScreenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
                 jPanelScreenLayout.createSequentialGroup()
-                    .addComponent(jLabelFullAdvice, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
-                        Short.MAX_VALUE)
+                    .addGroup(jPanelScreenLayout.createParallelGroup(
+                            javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelFullAdvice, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
+                            Short.MAX_VALUE)
+                        .addComponent(jLabelOperator, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
+                            Short.MAX_VALUE)
+                        .addComponent(jLabelCache, javax.swing.GroupLayout.DEFAULT_SIZE, 27,
+                            Short.MAX_VALUE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabelScreen))
     );
 
     jPanelResultButton.setBackground(new java.awt.Color(101, 85, 96));
     jPanelResultButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelResultButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightSpecialPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restoreSpecialPanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashSpecialPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightSpecialPanels(evt);
-      }
-    });
 
     jLabelResultButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelResultButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelResultButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelResultButton.setText("=");
+    jLabelResultButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightSpecialPanels(jPanelResultButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restoreSpecialPanelsColor(jPanelResultButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashSpecialPanels(jPanelResultButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightSpecialPanels(jPanelResultButton);
+      }
+    });
 
     javax.swing.GroupLayout jPanelResultButtonLayout = new javax.swing.GroupLayout(
         jPanelResultButton);
@@ -169,29 +197,33 @@ public class CalculatorView extends JFrame {
 
     jPanelCButton.setBackground(new java.awt.Color(101, 85, 96));
     jPanelCButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelCButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightSpecialPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restoreSpecialPanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashSpecialPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightSpecialPanels(evt);
-      }
-    });
 
     jLabelCButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelCButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelCButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelCButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelCButton.setText("C");
+    jLabelCButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightSpecialPanels(jPanelCButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restoreSpecialPanelsColor(jPanelCButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashSpecialPanels(jPanelCButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightSpecialPanels(jPanelCButton);
+      }
+    });
 
     javax.swing.GroupLayout jPanelCButtonLayout = new javax.swing.GroupLayout(jPanelCButton);
     jPanelCButton.setLayout(jPanelCButtonLayout);
@@ -206,29 +238,33 @@ public class CalculatorView extends JFrame {
 
     jPanelDivisionButton.setBackground(new java.awt.Color(135, 140, 143));
     jPanelDivisionButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelDivisionButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabelDivisionButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelDivisionButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelDivisionButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelDivisionButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelDivisionButton.setText("/");
+    jLabelDivisionButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelDivisionButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanelDivisionButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanelDivisionButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelDivisionButton);
+      }
+    });
 
     javax.swing.GroupLayout jPanelDivisionButtonLayout = new javax.swing.GroupLayout(
         jPanelDivisionButton);
@@ -246,30 +282,33 @@ public class CalculatorView extends JFrame {
 
     jPanelMultiplicationButton.setBackground(new java.awt.Color(135, 140, 143));
     jPanelMultiplicationButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelMultiplicationButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabelMultiplicationButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelMultiplicationButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelMultiplicationButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelMultiplicationButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelMultiplicationButton.setText("*");
+    jLabelMultiplicationButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
 
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelMultiplicationButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanelMultiplicationButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanelMultiplicationButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelMultiplicationButton);
+      }
+    });
     javax.swing.GroupLayout jPanelMultiplicationButtonLayout = new javax.swing.GroupLayout(
         jPanelMultiplicationButton);
     jPanelMultiplicationButton.setLayout(jPanelMultiplicationButtonLayout);
@@ -288,30 +327,33 @@ public class CalculatorView extends JFrame {
 
     jPanelEraseButton.setBackground(new java.awt.Color(135, 140, 143));
     jPanelEraseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelEraseButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabelEraseButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelEraseButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelEraseButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelEraseButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelEraseButton.setText("<-");
+    jLabelEraseButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
 
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelEraseButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanelEraseButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanelEraseButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelEraseButton);
+      }
+    });
     javax.swing.GroupLayout jPanelEraseButtonLayout = new javax.swing.GroupLayout(
         jPanelEraseButton);
     jPanelEraseButton.setLayout(jPanelEraseButtonLayout);
@@ -328,30 +370,33 @@ public class CalculatorView extends JFrame {
 
     jPanelMinusButton.setBackground(new java.awt.Color(135, 140, 143));
     jPanelMinusButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelMinusButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabelMinusButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelMinusButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelMinusButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelMinusButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelMinusButton.setText("-");
+    jLabelMinusButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
 
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelMinusButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanelMinusButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanelMinusButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelMinusButton);
+      }
+    });
     javax.swing.GroupLayout jPanelMinusButtonLayout = new javax.swing.GroupLayout(
         jPanelMinusButton);
     jPanelMinusButton.setLayout(jPanelMinusButtonLayout);
@@ -368,30 +413,33 @@ public class CalculatorView extends JFrame {
 
     jPanelPlusButton.setBackground(new java.awt.Color(135, 140, 143));
     jPanelPlusButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelPlusButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabelPlusButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelPlusButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelPlusButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelPlusButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelPlusButton.setText("+");
+    jLabelPlusButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
 
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelPlusButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanelPlusButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanelPlusButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelPlusButton);
+      }
+    });
     javax.swing.GroupLayout jPanelPlusButtonLayout = new javax.swing.GroupLayout(jPanelPlusButton);
     jPanelPlusButton.setLayout(jPanelPlusButtonLayout);
     jPanelPlusButtonLayout.setHorizontalGroup(
@@ -407,30 +455,33 @@ public class CalculatorView extends JFrame {
 
     jPanelDotButton.setBackground(new java.awt.Color(135, 140, 143));
     jPanelDotButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelDotButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabelDotButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelDotButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelDotButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelDotButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelDotButton.setText(".");
+    jLabelDotButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
 
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelDotButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanelDotButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanelDotButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelDotButton);
+      }
+    });
     javax.swing.GroupLayout jPanelDotButtonLayout = new javax.swing.GroupLayout(jPanelDotButton);
     jPanelDotButton.setLayout(jPanelDotButtonLayout);
     jPanelDotButtonLayout.setHorizontalGroup(
@@ -446,30 +497,33 @@ public class CalculatorView extends JFrame {
 
     jPanelPercentageButton.setBackground(new java.awt.Color(135, 140, 143));
     jPanelPercentageButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanelPercentageButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabelPercentageButton.setBackground(new java.awt.Color(0, 0, 0));
     jLabelPercentageButton.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabelPercentageButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelPercentageButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabelPercentageButton.setText("%");
+    jLabelPercentageButton.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
 
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelPercentageButton);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanelPercentageButton);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanelPercentageButton);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanelPercentageButton);
+      }
+    });
     javax.swing.GroupLayout jPanelPercentageButtonLayout = new javax.swing.GroupLayout(
         jPanelPercentageButton);
     jPanelPercentageButton.setLayout(jPanelPercentageButtonLayout);
@@ -486,23 +540,6 @@ public class CalculatorView extends JFrame {
 
     jPanel9Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel9Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel9Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel9Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel9Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -511,7 +548,23 @@ public class CalculatorView extends JFrame {
     jLabel9Button.setText("9");
     jLabel9Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel9Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel9Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel9Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel9Button);
       }
     });
 
@@ -528,23 +581,6 @@ public class CalculatorView extends JFrame {
 
     jPanel8Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel8Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel8Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel8Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel8Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -553,7 +589,23 @@ public class CalculatorView extends JFrame {
     jLabel8Button.setText("8");
     jLabel8Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel8Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel8Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel8Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel8Button);
       }
     });
 
@@ -570,23 +622,6 @@ public class CalculatorView extends JFrame {
 
     jPanel7Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel7Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel7Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel7Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel7Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -595,7 +630,23 @@ public class CalculatorView extends JFrame {
     jLabel7Button.setText("7");
     jLabel7Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel7Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel7Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel7Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel7Button);
       }
     });
 
@@ -612,23 +663,6 @@ public class CalculatorView extends JFrame {
 
     jPanel6Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel6Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel6Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel6Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel6Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -637,7 +671,23 @@ public class CalculatorView extends JFrame {
     jLabel6Button.setText("6");
     jLabel6Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel6Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel6Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel6Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel6Button);
       }
     });
 
@@ -654,23 +704,6 @@ public class CalculatorView extends JFrame {
 
     jPanel5Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel5Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel5Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel5Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel5Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -679,7 +712,23 @@ public class CalculatorView extends JFrame {
     jLabel5Button.setText("5");
     jLabel5Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel5Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel5Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel5Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel5Button);
       }
     });
 
@@ -696,23 +745,6 @@ public class CalculatorView extends JFrame {
 
     jPanel4Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel4Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel4Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel4Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel4Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -721,7 +753,23 @@ public class CalculatorView extends JFrame {
     jLabel4Button.setText("4");
     jLabel4Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel4Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel4Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel4Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel4Button);
       }
     });
 
@@ -738,23 +786,6 @@ public class CalculatorView extends JFrame {
 
     jPanel3Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel3Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel3Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel3Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel3Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -763,7 +794,23 @@ public class CalculatorView extends JFrame {
     jLabel3Button.setText("3");
     jLabel3Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel3Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel3Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel3Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel3Button);
       }
     });
 
@@ -780,32 +827,30 @@ public class CalculatorView extends JFrame {
 
     jPanel2Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel2Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel2Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
 
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
-
-    jLabel2Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel2Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
     jLabel2Button.setForeground(new java.awt.Color(0, 0, 0));
     jLabel2Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
     jLabel2Button.setText("2");
     jLabel2Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel2Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel2Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel2Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel2Button);
       }
     });
 
@@ -822,23 +867,6 @@ public class CalculatorView extends JFrame {
 
     jPanel1Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel1Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel1Button.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
 
     jLabel1Button.setBackground(new java.awt.Color(0, 0, 0));
     jLabel1Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
@@ -847,7 +875,23 @@ public class CalculatorView extends JFrame {
     jLabel1Button.setText("1");
     jLabel1Button.addMouseListener(new java.awt.event.MouseAdapter() {
       public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.numberPressed(evt);
+      }
+
+      public void mouseEntered(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel1Button);
+      }
+
+      public void mouseExited(java.awt.event.MouseEvent evt) {
+        controller.restorePanelsColor(jPanel1Button);
+      }
+
+      public void mousePressed(java.awt.event.MouseEvent evt) {
+        controller.flashPanels(jPanel1Button);
+      }
+
+      public void mouseReleased(java.awt.event.MouseEvent evt) {
+        controller.highlightPanels(jPanel1Button);
       }
     });
 
@@ -864,32 +908,31 @@ public class CalculatorView extends JFrame {
 
     jPanel0Button.setBackground(new java.awt.Color(135, 140, 143));
     jPanel0Button.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-    jPanel0Button.addMouseListener(new java.awt.event.MouseAdapter() {
+
+    jLabel0Button.setBackground(new java.awt.Color(0, 0, 0));
+    jLabel0Button.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
+    jLabel0Button.setForeground(new java.awt.Color(0, 0, 0));
+    jLabel0Button.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jLabel0Button.setText("0");
+    jLabel0Button.addMouseListener(new java.awt.event.MouseAdapter() {
+      public void mouseClicked(java.awt.event.MouseEvent evt) {
+        controller.numberPressed(evt);
+      }
+
       public void mouseEntered(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
+        controller.highlightPanels(jPanel0Button);
       }
 
       public void mouseExited(java.awt.event.MouseEvent evt) {
-        restorePanelsColor(evt);
+        controller.restorePanelsColor(jPanel0Button);
       }
 
       public void mousePressed(java.awt.event.MouseEvent evt) {
-        flashPanels(evt);
+        controller.flashPanels(jPanel0Button);
       }
 
       public void mouseReleased(java.awt.event.MouseEvent evt) {
-        highlightPanels(evt);
-      }
-    });
-
-    jLabel9Button9.setBackground(new java.awt.Color(0, 0, 0));
-    jLabel9Button9.setFont(new java.awt.Font("Cantarell", 0, 48)); // NOI18N
-    jLabel9Button9.setForeground(new java.awt.Color(0, 0, 0));
-    jLabel9Button9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabel9Button9.setText("0");
-    jLabel9Button9.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseClicked(java.awt.event.MouseEvent evt) {
-        numberPressed(evt);
+        controller.highlightPanels(jPanel0Button);
       }
     });
 
@@ -897,11 +940,11 @@ public class CalculatorView extends JFrame {
     jPanel0Button.setLayout(jPanel0ButtonLayout);
     jPanel0ButtonLayout.setHorizontalGroup(
         jPanel0ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9Button9, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+            .addComponent(jLabel0Button, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
     );
     jPanel0ButtonLayout.setVerticalGroup(
         jPanel0ButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9Button9, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+            .addComponent(jLabel0Button, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
     );
 
     javax.swing.GroupLayout jPanelMainLayout = new javax.swing.GroupLayout(jPanelMain);
@@ -1118,38 +1161,8 @@ public class CalculatorView extends JFrame {
     pack();
   }// </editor-fold>//GEN-END:initComponents
 
-  //Number Event
-  private void numberPressed(java.awt.event.MouseEvent evt) {
-    JLabel label = (JLabel) evt.getSource();
-    controller.numberPressed(label.getText());
-  }
-
-  //Color Events
-  private void flashSpecialPanels(java.awt.event.MouseEvent evt) {
-    controller.changePanelColor(evt, Colors.SPECIAL_FLASH);
-  }
-
-  private void highlightSpecialPanels(java.awt.event.MouseEvent evt) {
-    controller.changePanelColor(evt, Colors.SPECIAL_LIGHT);
-  }
-
-  private void restoreSpecialPanelsColor(java.awt.event.MouseEvent evt) {
-    controller.changePanelColor(evt, Colors.SPECIAL_DARK);
-  }
-
-  private void flashPanels(java.awt.event.MouseEvent evt) {
-    controller.changePanelColor(evt, Colors.FOREGROUND_FLASH);
-  }
-
-  private void highlightPanels(java.awt.event.MouseEvent evt) {
-    controller.changePanelColor(evt, Colors.FOREGROUND_LIGHT);
-  }
-
-  private void restorePanelsColor(java.awt.event.MouseEvent evt) {
-    controller.changePanelColor(evt, Colors.FOREGROUND_DARK);
-  }
-
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JLabel jLabel0Button;
   private javax.swing.JLabel jLabel1Button;
   private javax.swing.JLabel jLabel2Button;
   private javax.swing.JLabel jLabel3Button;
@@ -1159,14 +1172,15 @@ public class CalculatorView extends JFrame {
   private javax.swing.JLabel jLabel7Button;
   private javax.swing.JLabel jLabel8Button;
   private javax.swing.JLabel jLabel9Button;
-  private javax.swing.JLabel jLabel9Button9;
   private javax.swing.JLabel jLabelCButton;
+  private javax.swing.JLabel jLabelCache;
   private javax.swing.JLabel jLabelDivisionButton;
   private javax.swing.JLabel jLabelDotButton;
   private javax.swing.JLabel jLabelEraseButton;
   private javax.swing.JLabel jLabelFullAdvice;
   private javax.swing.JLabel jLabelMinusButton;
   private javax.swing.JLabel jLabelMultiplicationButton;
+  private javax.swing.JLabel jLabelOperator;
   private javax.swing.JLabel jLabelPercentageButton;
   private javax.swing.JLabel jLabelPlusButton;
   private javax.swing.JLabel jLabelResultButton;
