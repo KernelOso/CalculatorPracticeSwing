@@ -509,28 +509,8 @@ public class CalculatorView extends JFrame {
     jLabelPercentageButton.setFont(new java.awt.Font(Fonts.MONO_FONT, Font.PLAIN, 48)); // NOI18N
     jLabelPercentageButton.setForeground(new java.awt.Color(0, 0, 0));
     jLabelPercentageButton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabelPercentageButton.setText("%");
-    jLabelPercentageButton.addMouseListener(new java.awt.event.MouseAdapter() {
-      public void mouseClicked(java.awt.event.MouseEvent evt) {
-        //TODO percentage logic
-      }
+    jLabelPercentageButton.setText("");
 
-      public void mouseEntered(java.awt.event.MouseEvent evt) {
-        controller.highlightPanels(jPanelPercentageButton);
-      }
-
-      public void mouseExited(java.awt.event.MouseEvent evt) {
-        controller.restorePanelsColor(jPanelPercentageButton);
-      }
-
-      public void mousePressed(java.awt.event.MouseEvent evt) {
-        controller.flashPanels(jPanelPercentageButton);
-      }
-
-      public void mouseReleased(java.awt.event.MouseEvent evt) {
-        controller.highlightPanels(jPanelPercentageButton);
-      }
-    });
     javax.swing.GroupLayout jPanelPercentageButtonLayout = new javax.swing.GroupLayout(
         jPanelPercentageButton);
     jPanelPercentageButton.setLayout(jPanelPercentageButtonLayout);

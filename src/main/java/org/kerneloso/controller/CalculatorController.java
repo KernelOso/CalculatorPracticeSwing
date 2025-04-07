@@ -31,7 +31,7 @@ public class CalculatorController {
 
   public void digitPressed(java.awt.event.MouseEvent evt) {
 
-    resetModelWhenResolved();
+    model.setResolved(false);
 
     String current = model.getOperandScreen();
     String input = getLabelText(evt);
@@ -100,6 +100,7 @@ public class CalculatorController {
 
     if (model.isResolved()) {
       model.resetModel();
+      refreshView();
     }
 
   }
