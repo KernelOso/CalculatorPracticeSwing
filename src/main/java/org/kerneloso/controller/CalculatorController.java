@@ -38,8 +38,8 @@ public class CalculatorController {
     String updated =
         (current.equals("0"))
             ? (input.equals("."))
-              ? current + input
-              : input
+            ? current + input
+            : input
             : (current.contains(".") && input.equals("."))
                 ? current
                 : current + input;
